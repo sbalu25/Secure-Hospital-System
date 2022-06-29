@@ -1,0 +1,47 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <h2>Transaction requests</h2>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="w-100 h-100">
+        <ng-container *ngIf="transactionsList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Transaction requests
+            </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let transaction of transactionsList">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{transaction.time | date:'MMM d, y, h:mm:ss a'}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column">
+                            <div class="h6">Transaction Details</div>
+                            <div>
+                                <i>Patient Name:</i> {{transaction.patient_name}}
+                            </div>
+                            <div>
+                                <i>Transaction ID:</i> {{transaction.transaction_id}}
+                            </div>
+                            <div><i>Transaction Type:</i> {{transaction.transaction_type}}</div>
+                            <div><i>Amount:</i> {{transaction.amount}}</div>
+                            <div><i>Status:</i> {{transaction.status}}</div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end">
+                            <button mat-icon-button matTooltip="Approve report"
+                                (click)="authorizeTransaction(transaction, 'Approved')" class="approve">
+                                <mat-icon>check_circle_outline</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Reject report" class="reject"
+                                (click)="authorizeTransaction(transaction, 'Rejected')">
+                                <mat-icon>highlight_off</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="20px">
+    <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+            <strong>Bills</strong>
+        </div>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="billsList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Bills generated </div>
+        </ng-container>
+        <div fxLayout="column" fxLayoutGap="10px" class="w-100">
+            <ng-container *ngFor="let transaction of billsList; let i = index;">
+                <mat-card>
+                    <div fxLayout="row" fxLayoutAlign="space-between cenetr">
+                        <div fxLayout="column" class="w-100" id="print-section-{{i}}">
+                            <div class="h6">Bill Details</div>
+                            <div fxLayout="row">
+                                <i fxFlex="40">Bill Generated Date:</i> {{transaction?.created_time | date:'MM/dd/yyyy hh:mm a'}}
+                            </div>
+                            <div fxLayout="row">
+                                <i fxFlex="40">Transaction ID:</i> {{transaction?.transactions[0]?.transaction_id}}
+                            </div>
+                            <div fxLayout="row">
+                                <i fxFlex="40">Patient Name:</i> {{transaction?.transactions[0]?.patient_name}}
+                            </div>
+                            <div *ngIf="transaction?.transactions[0]?.claim[0]"><i fxFlex="40">Insurance Status:</i>
+                                {{transaction?.transactions[0]?.claim[0]?.status}}</div>
+                            <div><i fxFlex="40">Amount</i> {{transaction?.transactions[0]?.amount}}</div>
+                            <div *ngIf="transaction?.transactions[0]?.claim[0]?.amount_claimed"><i fxFlex="40">Insurance
+                                    Amount
+                                    claimed:</i>
+                                {{transaction?.transactions[0]?.claim[0]?.amount_claimed}}</div>
+                            <div *ngIf="transaction?.transactions[0]?.claim[0]?.amount_claimed" fxLayout="row"
+                                class="w-100"><i fxFlex="40">Balance Amount to pay</i>
+                                {{transaction?.transactions[0].amount -
+                                transaction?.transactions[0]?.claim[0]?.amount_claimed}}</div>
+                        </div>
+                        <div fxLayout="column"><button mat-fab color="primary" matTooltip="Print bill" printSectionId="print-section-{{i}}" ngxPrint>
+                                <mat-icon>print</mat-icon>
+                            </button></div>
+                    </div>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

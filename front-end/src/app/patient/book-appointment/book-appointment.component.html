@@ -1,0 +1,52 @@
+<div class="w-100 h-100 hospital-button" fxLayout="column">
+    <div class="w-100 h-100 bg-white container book-container shadow-sm">
+        <div fxLayout="column" class=" w-100" fxLayoutGap="15px">
+            <div fxLayout="row">
+                <mat-icon>assignment</mat-icon>
+                <div class="appointment">Book Appointment</div>
+            </div>
+            <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+            <form [formGroup]="bookForm" class="w-100">
+                <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                    <div class="md-form mt-0 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Select Doctor</mat-label>
+                            <mat-select formControlName="doctor">
+                                <mat-option *ngFor="let doctors of doctorsList; let i=index" value="{{i}}">
+                                    {{doctors.first_name | uppercase }} {{doctors.last_name | uppercase}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>Or</div>
+                    <div class="md-form mt-0 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Select speciality</mat-label>
+                            <mat-select formControlName="speciality">
+                                <mat-option *ngFor="let speciality of specialities; let i=index" value="{{speciality}}">
+                                    {{speciality | uppercase }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="md-form mt-0 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Select time</mat-label>
+                            <input matInput type="time" formControlName="time">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="10">
+                        <button mat-raised-button class="h6 book-appointment w-25" color="accent"
+                        (click)="bookAppointment()">Confirm appointment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

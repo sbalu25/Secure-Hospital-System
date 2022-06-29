@@ -1,0 +1,44 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="20px">
+    <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+            <strong>Transaction History</strong>
+        </div>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" fxFlex="5" fxLayoutAlign="end center">
+        <button mat-fab matTooltip="Create Transaction Requests" (click)="createTransactionRequest()">
+            <mat-icon>add_box</mat-icon>
+        </button>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="transactionsList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Transaction requests  </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let transaction of transactionsList; let i = index;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{transaction.time | date:'MMM d, y, h:mm:ss a'}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="row" fxLayoutAlign="space-between cenetr">
+                    <div fxLayout="column">
+                        <div class="h6">Transaction Details</div>
+                        <div>
+                            <i>Transaction ID:</i> {{transaction.transaction_id}}
+                        </div>
+                        <div>
+                            <i>Patient Name:</i> {{transaction.patient_name}}
+                        </div>
+                        <div><i>Transaction Type:</i> {{transaction.transaction_type}}</div>
+                        <div><i>Amount:</i> {{transaction.amount}}</div>
+                        <div><i>Status:</i> {{transaction.status}}</div>
+                    </div>
+                    <div fxLayout="column" *ngIf="transaction?.status == 'Approved' || transaction?.status == 'approved'" (click)="updateTransaction('Completed', i)"><button mat-raised-button color="primary" >Complete transaction</button></div>
+                    <div fxLayout="column" *ngIf="transaction?.status == 'Pending' || transaction?.status == 'pending'">Waiting for approval</div>
+                    <div fxLayout="column" *ngIf="transaction?.status == 'Completed' || transaction?.status == 'completed'" (click)="updateTransaction('BillGenerated', i)"><button mat-raised-button color="primary">Generate Bill</button></div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

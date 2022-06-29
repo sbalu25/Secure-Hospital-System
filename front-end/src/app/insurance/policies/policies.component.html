@@ -1,0 +1,52 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center" class="pt-1">
+        <strong>Insurance Policies</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" fxLayoutAlign="end center" *ngIf="loggedinData?.role == 'insurance_staff'">
+        <button mat-fab matTooltip="Add Policies" (click)="addPolicies()">
+            <mat-icon>add_box</mat-icon>
+        </button>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="policyList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No insurance policies available </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let policy of policyList">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <span>Created by {{policy?.created_name | uppercase}}</span>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="start">
+                            <div class="h6">{{policy?.time | date:'M/d/yy, h:mm a'}}</div>
+                        </div>
+                        <div fxLayout="column">
+                            <div fxLayout="row">
+                                <div fxFlex="20">Policy Group ID: &nbsp;</div>
+                                <div>{{policy?.group_number}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxFlex="20">Insurance Policy Name:&nbsp;</div>
+                                <div>{{policy.policy_name | uppercase}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxFlex="20">Coverage percentage:&nbsp;</div>
+                                <div>{{policy.coverage_percentage}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div fxFlex="20">Coverage company:&nbsp;</div>
+                                <div>{{policy.company_name | uppercase}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

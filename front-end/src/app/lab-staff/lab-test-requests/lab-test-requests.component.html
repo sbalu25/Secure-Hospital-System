@@ -1,0 +1,62 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>Lab test requests</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="labTestList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Lab test requests  </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let labtest of labTestList">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <span>Requested By {{labtest.doctor_name}} to {{labtest.patient_name}}</span>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div class="h6">{{labtest.time | date:'M/d/yy, h:mm a'}}</div>
+                        <div fxLayout="row" fxLayoutAlign="end" *ngIf="loggedInData?.role=='lab_staff'">
+                            <button mat-icon-button matTooltip="Approve report"
+                                (click)="authorizeLabTests(labtest, 'Approved')" class="approve">
+                                <mat-icon>check_circle_outline</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Reject report" class="reject"
+                                (click)="authorizeLabTests(labtest, 'Rejected')">
+                                <mat-icon>highlight_off</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <mat-grid-list cols="3" rowHeight="100px">
+                        <mat-grid-tile *ngFor="let test of labtest.tests">
+                            <div fxLayout="column">
+                                <div fxLayout="row">
+                                    <div>{{test.test_name | uppercase}}: </div>
+                                    <div> {{test.status}}</div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div>Sample Type : </div>
+                                    <div>{{test.sample_type}}</div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div>Report Result</div>
+                                    <div>{{test.result}}</div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div>Updated on </div>
+                                    <div>{{test.time | date:'M/d/yy, h:mm a'}}</div>
+                                </div>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+
+</div>

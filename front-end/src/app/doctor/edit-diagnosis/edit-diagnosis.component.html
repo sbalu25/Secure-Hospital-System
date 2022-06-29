@@ -1,0 +1,52 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="rounded">
+    <div fxLayout="column" class="w-100 h-100 hospital-button rounded" fxLayoutAlign="start" fxLayoutGap="10px">
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                Edit Diagnosis
+            </div>
+        </div>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <form [formGroup]="diagnosisForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="5px" class="ml-1">
+                    <div fxFlex="10" class="h6">Symptoms</div>
+                    <mat-checkbox class="example-margin" formControlName="fever">Fever</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="headache">Headache</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="nausea">Nausea</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="body_aches">Body aches</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="cough">Cough</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="cold">Cold</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="sore_throat">Sore Throat</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="diarrhea">Diarrhea</mat-checkbox>
+                    <mat-checkbox class="example-margin" formControlName="other">Other</mat-checkbox>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="30" class="h6">Previous Medications</div>
+                    <mat-form-field appearance="legacy" class="w-50 h6">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter previous medications if any"
+                            formControlName="previous_medications">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="30" class="h6">Drug history</div>
+                    <mat-form-field appearance="legacy" class="w-50 h6">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter drug history" formControlName="drug_history">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="30" class="h6">Additional Notes</div>
+                    <mat-form-field appearance="legacy" class="w-50 h6">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter any additional notes including chief complaint"
+                            formControlName="notes">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button (click)="editDiagnosis()">Update Diagnosis</button>
+        </div>
+    </div>
+</div>

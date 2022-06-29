@@ -1,0 +1,47 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="10px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="end" (click)="bookAppointment()">
+        <button mat-stroked-button color="accent">Add Appointment</button>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!accountVerified">
+            <div fxLayout="row" fxLayoutGap="20px" fxFlex="100">
+                <div class="w-75 mt-1 p-2 rounded h6 no-appointments">Verify your account to see appointments</div>
+                <button mat-raised-button color="accent" (click)="generateOtp()">Generate Otp</button>
+            </div>
+        </div>
+        <mat-tab-group class="w-100 h-100"*ngIf="accountVerified">
+            <mat-tab label="Approved Appointments" class="welcome-msg">
+                <div fxLayout="column" class="w-100" fxLayoutAlign="center center">
+                    <ng-container *ngIf="ApprovedAppointments?.length==0">
+                        <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Approved appointments Available  </div>
+                    </ng-container>
+                    <mat-accordion class="w-100 h-25 m-1" *ngFor="let appointment of ApprovedAppointments">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Appointment with {{appointment.doctor_name | uppercase}} on {{appointment.time | date:'M/d/yy, h:mm a'}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="column">
+                                <div><i>Status:</i> {{appointment.status}}
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </mat-tab>
+            <mat-tab label="Pending Appointments" class="welcome-msg">
+                <div fxLayout="column" class="w-100" fxLayoutAlign="center center">
+                    <ng-container *ngIf="pendingAppointments?.length==0">
+                        <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Pending appointments Available  </div>
+                    </ng-container>
+                    <mat-card class="w-100 h-25 m-1 " *ngFor="let appointment of pendingAppointments">
+                        <mat-card-subtitle>{{appointment.time | date:'M/d/yy, h:mm a'}}</mat-card-subtitle>
+                        <mat-card-title>{{appointment.doctor_name}}</mat-card-title>
+                    </mat-card>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

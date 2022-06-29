@@ -1,0 +1,181 @@
+<div fxLayout="row" class="p-2 rounded">
+    <div fxLayout="column" class="w-100 h-100 hospital-button rounded" fxLayoutAlign="start" fxLayoutGap="20px">
+        <button class="update w-25" mat-stroked-button fxLayout="row" fxLayoutAlign="center center"
+            (click)="registerNewUser()">
+            <span>Register User</span>
+        </button>
+        <div fxLayout="row" fxFlex="20" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                <strong>Profile</strong>
+            </div>
+        </div>
+        <form [formGroup]="registrationForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="profile">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">FirstName</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter First Name" formControlName="first_name">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">LastName</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter last name" formControlName="last_name">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Password</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter password" formControlName="password" type="password">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Gender</div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option value="female" selected>Female</mat-option>
+                            <mat-option value="male">Male</mat-option>
+                            <mat-option value="male">Other</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Role</div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Role</mat-label>
+                        <mat-select formControlName="role" (selectionChange)="selectRole()">
+                            <mat-option value="admin" selected>Admin</mat-option>
+                            <mat-option value="patient">Patient</mat-option>
+                            <mat-option value="doctor">Doctor</mat-option>
+                            <mat-option value="hospital_staff">Hospital Staff</mat-option>
+                            <mat-option value="lab_staff">Lab Staff</mat-option>
+                            <mat-option value="insurance_staff">Insurance Staff</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">EmailId</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter EmailId" formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Phone Number</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter mobile number" formControlName="phone_number">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Address</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Address" formControlName="address">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">City</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter City" formControlName="city">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">State</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter State" formControlName="state">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Country</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Country" formControlName="country">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">ZipCode</div>
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Zipcode" formControlName="zipcode">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                    <div class="h5" fxFlex="20">Date of Birth</div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date_of_birth">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <ng-container *ngIf="role=='patient'">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Blood Group</div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Blood Group</mat-label>
+                            <mat-select formControlName="blood_group">
+                                <mat-option value="O+ve">O+ve</mat-option>
+                                <mat-option value="O-ve">O-ve</mat-option>
+                                <mat-option value="B+ve">B+ve</mat-option>
+                                <mat-option value="B+ve">B-ve</mat-option>
+                                <mat-option value="B+ve">A+ve</mat-option>
+                                <mat-option value="B+ve">A-ve</mat-option>
+                                <mat-option value="B+ve">AB+ve</mat-option>
+                                <mat-option value="B+ve">AB-ve</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Height</div>
+                        <mat-form-field appearance="legacy" class="w-50">
+                            <!-- <mat-label>Enter some input</mat-label> -->
+                            <input matInput #input placeholder="Enter Height" formControlName="height"type="number">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Weight</div>
+                        <mat-form-field appearance="legacy" class="w-50">
+                            <!-- <mat-label>Enter some input</mat-label> -->
+                            <input matInput #input placeholder="Enter Weight" formControlName="weight"  type="number">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Emergency Contact Name</div>
+                        <mat-form-field appearance="legacy" class="w-50">
+                            <!-- <mat-label>Enter some input</mat-label> -->
+                            <input matInput #input placeholder="Enter Emergency Contact Name"
+                                formControlName="emergency_contact_name">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Emergency Contact Number</div>
+                        <mat-form-field appearance="legacy" class="w-50">
+                            <!-- <mat-label>Enter some input</mat-label> -->
+                            <input matInput #input placeholder="Enter Contact Number"
+                                formControlName="emergency_contact_number">
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="role == 'doctor'">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                        <div class="h5" fxFlex="20">Speciality</div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Speciality</mat-label>
+                            <mat-select formControlName="speciality">
+                                <mat-option *ngFor="let speciality of specialities" value="{{speciality}}">{{speciality}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+
+    </div>
+</div>

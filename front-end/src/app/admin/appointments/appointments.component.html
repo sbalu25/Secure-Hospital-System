@@ -1,0 +1,27 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="10px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>Appointments</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <div fxLayout="column" class="w-100" fxLayoutAlign="center center">
+                    <ng-container *ngIf="appointmentsList?.length==0">
+                        <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No appointments Available  </div>
+                    </ng-container>
+                    <mat-accordion class="w-75 h-25 m-1" *ngFor="let appointment of appointmentsList">
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Appointment with {{appointment.doctor_name | uppercase}} on {{appointment.time | date:'M/d/yy, h:mm a'}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="column">
+                                <div><i>Status:</i> {{appointment.status}}
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+
+    </div>
+</div>

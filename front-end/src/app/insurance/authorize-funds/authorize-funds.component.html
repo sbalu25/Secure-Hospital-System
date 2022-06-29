@@ -1,0 +1,30 @@
+<div fxLayout="row" class="m-2">
+    <div fxLayout="column" class="w-100 h-100 hospital-button rounded" fxLayoutAlign="start" fxLayoutGap="10px">
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                Add Additional comments
+            </div>
+        </div>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <form [formGroup]="authorizeForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Amount claimed</mat-label>
+                        <input matInput #input placeholder="Enter amount claimed" formControlName="amount_claimed">
+                    </mat-form-field>
+                </div>
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Additional comments</mat-label>
+                        <input matInput #input placeholder="Enter any additional comments" formControlName="comments">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="center center" (click)="authorizeFunds()">
+            <button mat-raised-button>Disperse funds</button>
+        </div>
+
+    </div>
+</div>

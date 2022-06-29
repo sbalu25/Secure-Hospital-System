@@ -1,0 +1,52 @@
+<div fxLayout="row" class="m-2">
+    <div fxLayout="column" class="w-100 h-100 hospital-button rounded" fxLayoutAlign="start" fxLayoutGap="10px">
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                Add Labtests
+            </div>
+        </div>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <form [formGroup]="labForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div class="md-form mt-0 w-100 mr-1" *ngIf="role!='patient'">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Select Patient by email</mat-label>
+                        <mat-select formControlName="patient">
+                            <mat-option *ngFor="let user of patientsList;let i=index;" value="{{i}}" >{{user.email}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-button matTooltip="Add lab tests" (click)="addTest()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter lab tests</mat-label>
+                        <input matInput #input placeholder="Enter lab test name" formControlName="lab_tests">
+                    </mat-form-field>
+                </div>
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Sample type</mat-label>
+                        <input matInput #input placeholder="Enter Sample type" formControlName="sample_type">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <mat-grid-list cols="3" rowHeight="50px">
+            <mat-grid-tile *ngFor="let test of labTests">
+                <button mat-raised-button fxLayout="row" fxLayoutAlign="space-between center" class="update">
+                    <span>{{test.test_name}}  </span>
+                    <span>{{test.sample_type}}</span>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <div fxLayout="row" fxLayoutAlign="center center" (click)="createLabTests()">
+            <button mat-raised-button>Create Lab tests</button>
+        </div>
+
+    </div>
+</div>

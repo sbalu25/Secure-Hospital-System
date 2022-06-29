@@ -1,0 +1,32 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>List of Diagnosis</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center" class="w-75">
+        <ng-container *ngIf="diagnosisList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Diagnosis Available </div>
+        </ng-container>
+        <mat-card class="w-100 m-1 prescription-card " *ngFor="let diagnosis of diagnosisList">
+            <mat-card-subtitle>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span><i>Diagonised by:</i> {{diagnosis.time | date:'h:mm a '}}by {{diagnosis.doctor_name}} to
+                        {{diagnosis.patient_name}}</span>
+                </div>
+            </mat-card-subtitle>
+            <!-- <mat-card-title>Dr.Sehwal(Cardiologist)</mat-card-title> -->
+            <mat-card-content>
+                <div fxLayout="column">
+                    <div fxLayout="row"><span fxFlex="20">Symptoms: </span><span>{{diagnosis.symptoms}}</span></div>
+                    <div fxLayout="row"><span fxFlex="20">Drug History:</span><span>{{diagnosis.drug_history}}</span>
+                    </div>
+                    <div fxLayout="row"><span fxFlex="20">Previous
+                            Medications:</span><span>{{diagnosis.previous_medications}}</span></div>
+                    <div fxLayout="row"><span fxFlex="20">Additional Notes:</span><span>{{diagnosis.notes}}</span></div>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

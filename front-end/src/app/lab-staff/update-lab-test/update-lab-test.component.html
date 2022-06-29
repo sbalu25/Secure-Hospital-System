@@ -1,0 +1,23 @@
+<form [formGroup]="updateForm">
+    <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+        <div class="md-form mt-0 w-100 mr-1">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Report Result</mat-label>
+                <input matInput #input placeholder="Enter Report result" formControlName="result">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div fxFlex="10">Status</div>
+            <mat-form-field appearance="fill">
+                <mat-label>Select status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="inprogress" selected>In Progress</mat-option>
+                    <mat-option value="completed">Completed</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button class="success" (click)="udpateReport()">Update <mat-icon>check_circle_outline</mat-icon></button>
+</div>

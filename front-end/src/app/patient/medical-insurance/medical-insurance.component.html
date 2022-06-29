@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutGap="10px" class="p-4" fxLayoutAlign="center">
+    <div fxLayoutAlign="center" fxLayout="row" class="h3">Insurance Details</div>
+    <div fxLayout="row" fxLayoutAlign="end" *ngIf="addInsuranceBoolean"><button mat-raised-button color="primary" (click)="addInsurance()">Add Insurance details</button></div>
+    <div fxLayout="row" fxLayoutAlign="center" *ngIf="userinsurance">
+        <mat-card class="example-card w-75">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image">
+                    <mat-icon>account_circle</mat-icon>
+                </div>
+                <mat-card-title>{{loggedInData?.first_name | uppercase}} {{loggedInData?.last_name | uppercase}}</mat-card-title>
+                <mat-card-subtitle>{{loggedInData?.date_of_birth| date:'M/d/yy'}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div fxLayout="column">
+                    <div fxLayout="row"><span fxFlex="20">Insurance Id:</span><span>{{userinsurance?.insurance_id}}</span></div>
+                    <div fxLayout="row"><span fxFlex="20">Group Number:</span><span>{{userinsurance?.group_number}}</span></div>
+                    <div fxLayout="row"><span fxFlex="20">Insurance Company: </span><span>{{userinsurance?.insurance_company | uppercase}}</span>
+                    </div>
+                    <div fxLayout="row"><span fxFlex="20">Insurance Policy Name:
+                        </span><span>{{getPolicyName(userinsurance?.group_number) | uppercase}}</span></div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <!-- <button mat-raised-button color="primary">UPDATE</button> -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+</div>

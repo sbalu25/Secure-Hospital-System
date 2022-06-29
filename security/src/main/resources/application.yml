@@ -1,0 +1,29 @@
+#spring:
+#  datasource:
+#    username: sql3480688
+#    password: 5QcmDUEAi6
+#    url: jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3480688
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+#fabric:
+#
+#  walletDirectory: wallet
+#
+#  networkConfigPath: connection.json
+#
+#  certificatePath: crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem
+#
+#  privateKeyPath: crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/priv_sk
+#
+#  mspid: Org1MSP
+#
+#  username: user1
+#
+#  channelName: mychannel
+#
+#  contractName: mycc

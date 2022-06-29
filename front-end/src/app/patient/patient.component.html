@@ -1,0 +1,34 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button">
+    <div fxLayout="row" fxFlexLayout="space-between center shadow-sm">
+        <div fxLayout="row" class=" w-100 h-100 p-3" fxLayoutGap="10px">
+            <!-- <div class="p-3 mb-2 rounded w-100 patient-function" fxFlex="10"></div> -->
+            <button class="rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('')">Appointments</button>
+            <!-- <button class="p-3 mb-2 rounded w-75 patient-function" fxLayoutAlign="center" mat-button
+            fxFlex="10">Diagnosis</button> -->
+            <button class=" rounded  patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('prescription')">Prescription</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('diagnosis')">Diagnosis</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('lab-tests')">Lab
+                Reports</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="13"
+                (click)="navigateToSection('medical-insurance')">Medical
+                Insurance</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="13"
+                (click)="navigateToSection('transactions')">Transactions</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('bills')">Bills</button>
+            <button class=" rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                (click)="navigateToSection('profile')">Profile</button>
+
+        </div>
+        <button mat-icon-button matTooltip="Logout" color="accent" (click)="logout()" fxLayoutAlign="center">
+            <mat-icon>input</mat-icon>
+        </button>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+<df-messenger intent="WELCOME" chat-title="chatbot" agent-id="ad13db98-5bf9-4b84-ba7c-3d99b4130c1b" language-code="en">
+</df-messenger>

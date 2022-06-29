@@ -1,0 +1,38 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="20px">
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" fxFlex="20" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class="welcome-msg" fxLayout="row" fxFlex="50">
+            <strong>List of Prescriptions</strong>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="prescriptionList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Prescriptions Available  </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let prescription of prescriptionList">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <span>Prescribed by {{prescription?.doctor_name | uppercase}} to {{prescription?.patient_name | uppercase}}</span>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div class="h6">{{prescription.time | date:'M/d/yy, h:mm a'}}</div>
+                    <mat-grid-list cols="3" rowHeight="100px">
+                        <mat-grid-tile *ngFor="let drug of prescription.drugs">
+                            <div fxLayout="column">
+                                <div>Drug: {{drug.drug_name | uppercase}}</div>
+                                <div>Strength: {{drug.dosage}}</div>
+                                <div>Units: {{drug.units}}</div>
+                                <div>Frequency: {{drug.frequency}}</div>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>

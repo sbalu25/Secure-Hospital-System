@@ -1,0 +1,46 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>List of Diagnosis</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-fab matTooltip="Add Diagnosis" (click)="addDiagnosis()">
+            <mat-icon>add_box</mat-icon>
+        </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center center" class="p-2 diagnosis-card">
+            <ng-container *ngIf="diagnosisData?.length==0">
+                <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Diagnosis available</div>
+            </ng-container>
+            <mat-card class="w-100 m-1 prescription-card " *ngFor="let diagnosis of diagnosisData">
+                <mat-card-subtitle>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <span><i>Diagonised by:</i> {{diagnosis.time | date:'M/d/yy, h:mm a'}}by {{diagnosis.doctor_id}} to {{diagnosis.patient_id}}</span>
+                        <div fxLayout="row">
+                            <button mat-icon-button matTooltip="Edit diagnosis"(click)="editDiagnosis(diagnosis)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button matTooltip="Delete diagnosis" (click)="deleteDiagnosis(diagnosis.diagnosis_id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-subtitle>
+                <!-- <mat-card-title>Dr.Sehwal(Cardiologist)</mat-card-title> -->
+                <mat-card-content>
+                    <div fxLayout="column">
+                        <div fxLayout="row"><span fxFlex="30">Symptoms: </span><span>{{diagnosis.symptoms}}</span></div>
+                        <div fxLayout="row"><span fxFlex="30">Drug History:</span><span>{{diagnosis.drug_history}}</span>
+                        </div>
+                        <div fxLayout="row"><span fxFlex="30">Previous Medications:</span><span>{{diagnosis.previous_medications}}</span></div>
+                        <div fxLayout="row"><span fxFlex="30">Additional Notes:</span><span>{{diagnosis.notes}}</span></div>
+    
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    
+
+</div>

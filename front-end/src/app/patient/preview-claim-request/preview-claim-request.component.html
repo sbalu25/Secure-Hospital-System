@@ -1,0 +1,37 @@
+<div class="w-100 h-100 hospital-button" fxLayout="column">
+    <div class="w-100 h-100 bg-white container book-container shadow-sm">
+        <div fxLayout="column" class=" w-100" fxLayoutGap="15px">
+            <div fxLayout="row">
+                <div class="appointment">Preview Claim Request</div>
+            </div>
+            <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div fxLayout="row">
+                    <span fxFlex="20">Name:</span><span>{{loginData?.first_name | uppercase}} {{loginData?.last_name | uppercase}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Email:</span><span>{{loginData?.email}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Date of Birth:</span><span>{{loginData?.date_of_birth |date:'M/d/yy'}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Transaction Id:</span><span>{{transaction?.transaction_id}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Policy Id:</span><span>{{insuranceData?.insurance_id}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Group Id:</span><span>{{insuranceData?.group_number}}</span>
+                </div>
+                <div fxLayout="row">
+                    <span fxFlex="20">Company Name:</span><span>{{insuranceData?.insurance_company}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" fxFlex="10">
+                    <button mat-raised-button class="h6 book-appointment w-25" color="accent"
+                        (click)="confirmClaimRequest()">Confirm Claim Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

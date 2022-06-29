@@ -1,0 +1,148 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="20px">
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="row" fxFlex="20" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class="welcome-msg" fxLayout="row" fxFlex="50">
+            <strong>Profile</strong>
+        </div>
+        <div fxLayout="row" fxFlex="10" fxLayoutAlign="end" class="help-icon">
+            <a routerLink="/patient/{{userid}}/help" routerLinkActive="active"><i class="fa fa-question"
+                    matTooltip="Need Assitance? Make your request by clicking here"></i></a>
+        </div>
+    </div>
+    <form [formGroup]="patientForm">
+        <div fxLayout="column" fxLayoutAlign="start" class="profile">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">FirstName</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="first_name">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">LastName</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="last_name">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Gender</div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Select Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="female">Female</mat-option>
+                        <mat-option value="male">Male</mat-option>
+                        <mat-option value="male">Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">EmailId</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="email">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Phone Number</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="mobile_number">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Address</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="email">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">State</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="state">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">City</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="city">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Country</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="country">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">ZipCode</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="zip_code">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Date of Birth</div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date_of_birth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Height</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="height">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Weight</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="weight">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Emergency Contact Name</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="emergency_contact_name">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Emergency Contact Number</div>
+                <mat-form-field appearance="legacy" class="w-50">
+                    <!-- <mat-label>Enter some input</mat-label> -->
+                    <input matInput #input formControlName="emergency_contact_number">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <div class="h5" fxFlex="25">Blood Group</div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Select Blood Group</mat-label>
+                    <mat-select formControlName="blood_group">
+                        <mat-option value="O+ve">O+ve</mat-option>
+                        <mat-option value="O-ve">O-ve</mat-option>
+                        <mat-option value="B+ve">B+ve</mat-option>
+                        <mat-option value="B+ve">B-ve</mat-option>
+                        <mat-option value="B+ve">A+ve</mat-option>
+                        <mat-option value="B+ve">A-ve</mat-option>
+                        <mat-option value="B+ve">AB+ve</mat-option>
+                        <mat-option value="B+ve">AB-ve</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button color="accent" mat-raised-button fxFlex="10" (click)="updateProfile()">
+                    Update
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

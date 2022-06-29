@@ -1,0 +1,43 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>Claim Requests</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="claimsList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No claim requests available</div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let claim of claimsList; let i = index;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <span>Claimed by {{claim.patient_name | uppercase}}</span>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="column">
+                        <div class="h6">Updated on {{claim.created_time | date:'M/d/yy, h:mm a'}}</div>
+                        <div fxLayout="column">
+                            <div fxLayout="row">
+                                <div>Insurance ID:&nbsp;</div>
+                                <div>{{claim?.policy_id}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div>Transaction ID:&nbsp;</div>
+                                <div>{{claim?.transaction_id}}</div>
+                            </div>
+                            <div fxLayout="row">
+                                <div>Group Number:&nbsp;</div>
+                                <div>{{claim?.group_number}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+
+</div>

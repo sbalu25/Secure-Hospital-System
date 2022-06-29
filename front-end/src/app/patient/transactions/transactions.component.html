@@ -1,0 +1,50 @@
+<div fxLayout="row" class="p-4">
+    <div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="20px">
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                <strong>Transaction History</strong>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!accountVerified">
+            <div fxLayout="row" fxLayoutGap="20px" fxFlex="100">
+                <div class="w-75 mt-1 p-2 rounded h6 no-appointments">Verify your account to see transactions</div>
+                <button mat-raised-button color="accent" (click)="generateOtp()">Generate Otp</button>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="accountVerified">
+            <ng-container *ngIf="transactionsList?.length==0">
+                <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Transactions
+                    Available </div>
+            </ng-container>
+            <mat-accordion class="w-75 m-1" *ngFor="let transaction of transactionsList; let i = index;">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Created by {{transaction.created_by}} on {{transaction.time | date:'M/d/yy, h:mm a'}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div fxLayout="column" class="p-1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="h6">Transaction Details</div>
+                            <button mat-raised-button color="primary" (click)="claimRequest(i)"
+                                *ngIf="transaction?.claim?.length ==0">Claim Request</button>
+                        </div>
+                        <div>
+                            <i>Transaction ID:</i> {{transaction.transaction_id}}
+                        </div>
+                        <div><i>Transaction Type:</i> {{transaction.transaction_type}}</div>
+                        <div><i>Transaction Status:</i> {{transaction.status}}</div>
+                        <div><i>Insurance Status:</i> {{transaction?.claim[0]?.status}}</div>
+                        <div><i>Amount</i> {{transaction.amount}}</div>
+                        <div *ngIf="transaction?.claim[0]?.amount_claimed"><i>Insurance Amount claimed:</i>
+                            {{transaction?.claim[0]?.amount_claimed}}</div>
+                        <div *ngIf="transaction?.claim[0]?.amount_claimed"><i>Balance Amount to pay</i>
+                            {{transaction.amount - transaction?.claim[0]?.amount_claimed}}</div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="20px">
+    <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+            <strong>Help requests</strong>
+        </div>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="helpRequests?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Help requests  </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let help of helpRequests; let i = index;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{help.created_time | date:'MMM d, y, h:mm:ss a'}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="row" fxLayoutAlign="space-between cenetr">
+                    <div fxLayout="column">
+                        <div class="h6">Help Request Details</div>
+                        <div>
+                            <i>Patient email:</i> {{help.patient_mail}}
+                        </div>
+                        <div>
+                            <i>Patient Name:</i> {{help.patient_name}}
+                        </div>
+                        <div><i>Request Details:</i> {{help.request}}</div>
+                    </div>
+                    <div><button mat-raised-button color="primary" (click)="changeStatus(i)">Mark to addressed</button></div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>

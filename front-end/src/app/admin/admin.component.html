@@ -1,0 +1,29 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" class=" w-100 h-100 shadow-sm" fxLayoutGap="5px">
+            <!-- <div class="p-3 mb-2 rounded w-100 patient-function" fxFlex="10"></div> -->
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('')">Users</button>
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('prescriptions')">Prescriptions</button>
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('appointments')">Appointments</button>
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('diagnosis')">Diagnosis</button>
+                <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('lab-tests')">Lab Tests</button>
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('logs')">Logs</button>
+            <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button 
+                (click)="navigateToSection('insurance')">Insurance</button>
+                <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('policies')">Insurance Policies</button>
+                <button class="p-1 rounded patient-function" fxLayoutAlign="center" mat-button
+                (click)="navigateToSection('claims')">Insurance claims</button>
+        </div>
+        <button mat-icon-button matTooltip="Logout" color="accent" (click)="logout()">
+            <mat-icon>input</mat-icon>
+        </button>
+    </div>
+    <router-outlet></router-outlet>
+</div>

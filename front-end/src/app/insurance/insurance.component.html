@@ -1,0 +1,19 @@
+<div class="p-2 hospital-button w-100 h-100">
+    <div fxLayout="column" class="w-100 h-100">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="shadow-sm">
+            <div fxLayout="row" class=" w-100 h-100 p-1" fxLayoutGap="10px" fxFlexLayout="space-between">
+                <button class="rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                    (click)="navigateToSection('')">Claim Requests</button>
+                <button class="rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                    (click)="navigateToSection('policies')">Policies</button>
+                <button class="rounded patient-function" fxLayoutAlign="center" mat-button fxFlex="10"
+                    (click)="navigateToSection('funds-dispersal')">Funds Dispersal</button>
+            </div>
+            <button mat-icon-button matTooltip="Logout" color="accent" (click)="logout()">
+                <mat-icon>input</mat-icon>
+            </button>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>

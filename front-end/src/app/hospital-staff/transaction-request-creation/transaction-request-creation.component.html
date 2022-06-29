@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <span class="h6">Create Transaction form</span>
+</div>
+<mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+<form [formGroup]="creationForm">
+    <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+        <div class="md-form mt-0 w-100 mr-1">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Select Patient by email</mat-label>
+                <mat-select formControlName="patient">
+                    <mat-option *ngFor="let user of patientsList;let i=index" value="{{i}}">{{user.first_name}} {{user.last_name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" class="w-75 md-form mt-0">
+            <!-- <div fxFlex="20">Transactions</div> -->
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Select Transaction type</mat-label>
+                <mat-select formControlName="transactionType">
+                    <mat-option value="card" selected>Debit/Credit Card</mat-option>
+                    <mat-option value="cash">Cash</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class=" md-form mt-0 w-75 mr-1">
+            <mat-form-field appearance="legacy" class="w-100">
+                <mat-label>Amount</mat-label>
+                <input matInput #input placeholder="Enter Transaction amount" formControlName="amount" type="number">
+            </mat-form-field>
+        </div>
+        <div class="md-form mt-0 w-75 mr-1">
+            <mat-form-field appearance="legacy" class="w-100">
+                <mat-label>Comments</mat-label>
+                <input matInput #input placeholder="Enter any comments" formControlName="comments">
+            </mat-form-field>
+        </div>
+
+    </div>
+</form>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="accent"(click)="createTransaction()">Create Transaction</button>
+</div>

@@ -1,0 +1,23 @@
+.hospital-button{
+    background-color: #cae5f2;
+}
+.login-component{
+    height:100%;
+    width:100%;
+    background-color: aliceblue;
+    background-image: linear-gradient(to right bottom, #4eb5b573,#98e0e045 );
+    // background-image: url("../../assets/images/hospital.png");
+}
+.divider{
+    max-width:100%;
+}
+.login-container{
+    height:90%;
+    width:90%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.right-pane{
+    background-image: url("../../../assets/images/hospital.png");
+    border-radius: 8px;
+}

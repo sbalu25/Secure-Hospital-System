@@ -1,0 +1,95 @@
+<div class="border">
+    <div fxLayout="column" class="w-100 h-100 hospital-button" fxLayoutAlign="start" fxLayoutGap="10px">
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                <strong>Add Prescriptions</strong>
+            </div>
+        </div>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <form [formGroup]="prescriptionForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Select Patient by email</mat-label>
+                        <mat-select formControlName="patient">
+                            <mat-option *ngFor="let user of users;let i= index;" value="{{i}}">{{user.email}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" *ngFor="let drug of drugs">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <mat-card class="w-50 m-1 prescription-card ">
+                            <mat-card-content>
+                                <div fxLayout="column" fxLayoutAlign="start start">
+                                    <div>Drug: {{drug.drug_name}}</div>
+                                    <div>Strength: {{drug.dosage}}</div>
+                                    <div>Units: {{drug.units}}</div>
+                                    <div>Frequency: {{drug.frequency}}</div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="10">Drug</div>
+                    <mat-form-field appearance="legacy" class="w-100">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Drug Name" formControlName="drug">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="10">Dosage</div>
+                    <mat-form-field appearance="legacy" class="w-100">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Dosage" formControlName="dosage">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="10">Units</div>
+                    <mat-form-field appearance="legacy" class="w-100">
+                        <!-- <mat-label>Enter some input</mat-label> -->
+                        <input matInput #input placeholder="Enter Units" formControlName="units">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <div fxFlex="10">Frequency</div>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Select Frequency</mat-label>
+                        <mat-select formControlName="frequency">
+                            <mat-option value="daily" selected>Daily</mat-option>
+                            <mat-option value="weekly">Weekly</mat-option>
+                            <mat-option value="monthly">Monthly</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-button matTooltip="Add drug" (click)="addDrug()">
+                        <mat-icon>add</mat-icon> Add Drug
+                    </button>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <mat-checkbox class="example-margin" formControlName="revisit" (change)="revisit($event.checked)">Schedule another appointment</mat-checkbox>
+                </div>
+                <ng-container *ngIf="showRevisit">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="md-form mt-0 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Select time</mat-label>
+                            <input matInput type="time" formControlName="time">
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-raised-button (click)="addPrescription()" class="update">Add Prescription</button>
+        </div>
+
+    </div>
+</div>

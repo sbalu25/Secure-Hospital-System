@@ -1,0 +1,45 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>Claim Requests</strong>
+    </div>
+    <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <ng-container *ngIf="insuranceList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No claim requests available
+            </div>
+        </ng-container>
+        <mat-accordion class="w-75 m-1" *ngFor="let claim of insuranceList; let i = index;">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <span>{{claim.patient_name | uppercase}}</span>
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="column">
+                        <div fxLayout="column">
+                            <div fxLayout="row"><span fxFlex="20">Insurance
+                                    Id:</span><span>{{claim?.insurance_id}}</span></div>
+                            <div fxLayout="row"><span fxFlex="20">Group
+                                    Number:</span><span>{{claim?.group_number}}</span></div>
+                            <div fxLayout="row"><span fxFlex="20">Insurance Company:
+                                </span><span>{{claim?.insurance_company | uppercase}}</span>
+                            </div>
+                            <div fxLayout="row"><span fxFlex="20">Insurance Policy Name:
+                                </span><span>{{claim?.policy_name}}</span></div>
+                            <div fxLayout="row"><span fxFlex="20">Address:
+                                </span><span>{{claim?.address}}, {{claim?.city}}, {{claim?.state}},
+                                    {{claim?.country}}</span></div>
+                                    <div fxLayout="row"><span fxFlex="20">Date of Birth:
+                                    </span><span>{{claim?.date_of_birth | date:"MM/dd/yyyy h:mm"}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+
+</div>

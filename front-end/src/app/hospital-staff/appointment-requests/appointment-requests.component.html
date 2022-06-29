@@ -1,0 +1,50 @@
+<div fxLayout="column" class="w-100 h-100 hospital-button p-4" fxLayoutAlign="start" fxLayoutGap="1px">
+    <div class="welcome-msg" fxLayout="row" fxLayoutAlign="center center">
+        <strong>Appointment Requests</strong>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <ng-container *ngIf="appointmentList?.length==0">
+            <div class="w-50 h-25 mt-1 bg-white p-2 rounded h6 no-appointments" fxFlex="100">No Appointment Requests
+            </div>
+        </ng-container>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <ng-container *ngIf="appointmentList?.length>0">
+            <mat-accordion class="w-75 m-1" *ngFor="let appointment of appointmentList">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{appointment.time | date:'MMM d, y, h:mm a'}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="column">
+                                <div fxLayout="row">
+                                    <div><i>Status:</i> {{appointment.status}}
+                                    </div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div><i>Appointment with:</i> {{appointment.doctor_name | uppercase}}</div>
+                                </div>
+                                <div fxLayout="row">
+                                    <div><i>Appointment Date:</i> {{appointment.time | date:'MMM d, y, h:mm a'}}</div>
+                                </div>
+                            </div>
+                            <div fxLayout="row">
+                                <button mat-icon-button matTooltip="Approve report"
+                                    (click)="authorizeAppointments(appointment, 'approved')" class="approve">
+                                    <mat-icon>check_circle_outline</mat-icon>
+                                </button>
+                                <button mat-icon-button matTooltip="Reject report" class="reject"
+                                    (click)="authorizeAppointments(appointment, 'rejected')">
+                                    <mat-icon>highlight_off</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ng-container>
+    </div>
+</div>

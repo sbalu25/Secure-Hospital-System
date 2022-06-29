@@ -1,0 +1,36 @@
+<div fxLayout="row" class="m-2">
+    <div fxLayout="column" class="w-100 h-100 hospital-button rounded" fxLayoutAlign="start" fxLayoutGap="10px">
+        <div fxLayout="row" fxFlex="10" class=" w-100 h-100" fxLayoutAlign="center center">
+            <div class="welcome-msg" fxLayout="row" fxFlex="50">
+                Add Insurance Policy
+            </div>
+        </div>
+        <mat-progress-bar *ngIf="showProgressBar"></mat-progress-bar>
+        <form [formGroup]="policyForm">
+            <div fxLayout="column" fxLayoutAlign="start" class="p-1" fxLayoutGap="10px">
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Policy name</mat-label>
+                        <input matInput #input placeholder="Enter policy name" formControlName="policy_name">
+                    </mat-form-field>
+                </div>
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Coverage Percentage</mat-label>
+                        <input matInput #input placeholder="Enter Covergae Percentage" formControlName="coverage_percentage" type="number" max=100>
+                    </mat-form-field>
+                </div>
+                <div class="md-form mt-0 w-100 mr-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Enter Insurance Company</mat-label>
+                        <input matInput #input placeholder="Enter Covergae Percentage" formControlName="company_name">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="center center" (click)="createPolicy()">
+            <button mat-raised-button>Create Insurance Policy</button>
+        </div>
+
+    </div>
+</div>
