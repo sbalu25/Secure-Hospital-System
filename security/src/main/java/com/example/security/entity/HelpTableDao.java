@@ -30,10 +30,10 @@ public class HelpTableDao {
     @Column(name = "request", nullable = false)
     private String request;
 
-    @Column(name = "addressed_by", nullable = false)
+    @Column(name = "addressed_by")
     private String addressed_by;
 
-    @Column(name = "addressed_name", nullable = false)
+    @Column(name = "addressed_name")
     private String addressed_name;
 
     @Column(name = "status", nullable = false)
@@ -42,6 +42,6 @@ public class HelpTableDao {
     @Column(name = "created_time", nullable = false)
     private Timestamp created_time;
 
-    @Column(name = "updated_time", nullable = false)
+    @Column(name = "updated_time")
     private Timestamp updated_time;
 }

@@ -12,6 +12,8 @@ export class InsuranceService {
   claim_url = environment.url + environment.insuranceClaim.base;
   constructor(private httpClient: HttpClient) { }
   createPolicies(request:any):Observable<any>{
+    let headers = Headers;
+    
     return this.httpClient.post(this.policy_url + environment.insurancePolicy.create, request, {responseType:"text"})
   }
   listPolicies(): Observable<any>{

@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://hospital-system-10191.web.app/", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("user")
 public class UserController {
 //    @Value("${recaptcha.secret}")
@@ -92,10 +92,11 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody User user, @RequestHeader("Authorization") String token){
-        if(token == ""){
+    public ResponseEntity<String> registerUser(@RequestBody User user, @RequestHeader(value="Authorization", required=false) String Authorization) {
+        System.out.println(Authorization);
+        if(Authorization==null){
             if(user.getRole().contentEquals("patient")) {
-                String result = customerService.registerCustomer(user, null);
+                String result = customerService.registerCustomer(user, "");
                 if (result.contentEquals("success")) {
                     return new ResponseEntity<String>(result, HttpStatus.OK);
                 } else {
@@ -108,7 +109,7 @@ public class UserController {
             }
         }
         else{
-            String jwtToken = token.substring(7);
+            String jwtToken = Authorization.substring(7);
             String email = "";
             try {
                 email = jwtTokenUtil.getEmailFromToken(jwtToken);
@@ -166,6 +167,24 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam String id, @RequestHeader("Authorization") String token) {
 
+
+        String jwtToken = token.substring(7);
+        String email = "";
+        try {
+            email = jwtTokenUtil.getEmailFromToken(jwtToken);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unable to get JWT Token");
+        } catch (ExpiredJwtException e) {
+            System.out.println("JWT Token has expired");
+        }
+        return customerService.deleteUser(Integer.parseInt(id),email);
+
+    }
+
+
+    @GetMapping("/users")
+    public List<UserDao> getUsers(@RequestHeader("Authorization") String token) {
+
         String jwtToken = token.substring(7);
         String email = "";
         try {
@@ -176,25 +195,6 @@ public class UserController {
             System.out.println("JWT Token has expired");
         }
 
-
-        return customerService.deleteUser(Integer.parseInt(id),email);
-
-    }
-
-
-    @GetMapping("/users")
-    public List<UserDao> getUsers(@RequestHeader("Authorization") String token) {
-
-        String jwtToken = token.substring(7);
-        System.out.println(jwtToken);
-        String email = "";
-        try {
-             email = jwtTokenUtil.getEmailFromToken(jwtToken);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Unable to get JWT Token");
-        } catch (ExpiredJwtException e) {
-            System.out.println("JWT Token has expired");
-        }
         return userService.getUsers(email);
     }
 

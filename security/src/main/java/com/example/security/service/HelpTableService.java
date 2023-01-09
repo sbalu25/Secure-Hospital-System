@@ -43,6 +43,7 @@ public class HelpTableService {
 
                 return "success";
             } catch (Exception e) {
+                System.out.println(e);
                 return "something went wrong, please try again!";
             }
 

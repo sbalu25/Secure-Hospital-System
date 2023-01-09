@@ -53,6 +53,7 @@ export class EmployeeRecordsComponent implements OnInit {
             this.dataSource = new MatTableDataSource(patientsArray);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
+            console.log(this.dataSource)
 
           })
         })

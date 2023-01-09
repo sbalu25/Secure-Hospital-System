@@ -179,11 +179,11 @@ public class CustomerUserDetailsService  {
             customer.setState(userDetails.getState());
             customer.setCountry(userDetails.getCountry());
             customer.setLogin_status(existing.getLogin_status());
-
+            customer.setAccount_status(existing.getAccount_status());
+            customer.setAccount_verified(existing.getAccount_verified());
+            customer.setNo_of_attempts(existing.getNo_of_attempts());
                 try {
                     userRepo.save(customer);
-
-
                     if(userDetails.getRole().contentEquals("patient")){
                         PatientDao patient=new PatientDao();
                         PatientDao existingPaitent=patientRepo.getById(userDetails.getId());
@@ -224,106 +224,77 @@ public class CustomerUserDetailsService  {
     }
 
 
-        public String registerCustomer(User userDetails, String email ) {
-            UserDao checkScope = userRepo.findByEmail(email);
-            UserDao customer = new UserDao();
-            if (userDetails != null) {
+    public String registerCustomer(User userDetails, String email ) {
 
-                customer.setRole(userDetails.getRole());
-                int strength = 10; // work factor of bcrypt
-                BCryptPasswordEncoder bCryptPasswordEncoder =
-                        new BCryptPasswordEncoder(strength, new SecureRandom());
-                String encodedPassword = bCryptPasswordEncoder.encode(userDetails.getPassword());
+        UserDao checkScope = null;
+        if(email.contentEquals("")){
+            checkScope=null;
 
+        }
+        else{
+            checkScope=userRepo.findByEmail(email);
+        }
+        UserDao customer = new UserDao();
+        if (userDetails != null) {
 
-                customer.setPassword(encodedPassword);
-                customer.setFirst_name(userDetails.getFirst_name());
-                customer.setLast_name(userDetails.getLast_name());
-                customer.setGender(userDetails.getGender());
-                customer.setDate_of_birth(userDetails.getDate_of_birth());
-                customer.setMobile_number(userDetails.getMobile_number());
-                customer.setEmail(userDetails.getEmail());
-                customer.setAddress(userDetails.getAddress());
-                customer.setCity(userDetails.getCity());
-                customer.setState(userDetails.getState());
-                customer.setCountry(userDetails.getCountry());
-                customer.setLogin_status(userDetails.getLogin_status());
-                customer.setAccount_status("Unblocked");
-                customer.setNo_of_attempts(0);
-                customer.setAccount_verified(true);
-
-                if(userRepo.findByEmail(customer.getEmail())!=null){
-                    return "User already exists";
-                }
-                else{
-                    try {
-                        if(checkScope!=null && checkScope.getRole().contentEquals("admin")){
+            customer.setRole(userDetails.getRole());
+            int strength = 10; // work factor of bcrypt
+            BCryptPasswordEncoder bCryptPasswordEncoder =
+                    new BCryptPasswordEncoder(strength, new SecureRandom());
+            String encodedPassword = bCryptPasswordEncoder.encode(userDetails.getPassword());
 
 
-                                userRepo.save(customer);
+            customer.setPassword(encodedPassword);
+            customer.setFirst_name(userDetails.getFirst_name());
+            customer.setLast_name(userDetails.getLast_name());
+            customer.setGender(userDetails.getGender());
+            customer.setDate_of_birth(userDetails.getDate_of_birth());
+            customer.setMobile_number(userDetails.getMobile_number());
+            customer.setEmail(userDetails.getEmail());
+            customer.setAddress(userDetails.getAddress());
+            customer.setCity(userDetails.getCity());
+            customer.setState(userDetails.getState());
+            customer.setCountry(userDetails.getCountry());
+            customer.setLogin_status(userDetails.getLogin_status());
+            customer.setAccount_status("Unblocked");
+            customer.setNo_of_attempts(0);
+            customer.setAccount_verified(true);
 
-                            if (userDetails.getRole().contentEquals("patient")) {
-                                PatientDao patient = new PatientDao();
-                                patient.setPatient_id(customer.getId());
-                                patient.setBlood_type(userDetails.getBlood_type());
-                                patient.setHeight(userDetails.getHeight());
-                                patient.setWeight(userDetails.getWeight());
-                                patient.setInsurance_id(UUID.randomUUID().toString());
-                                //patient.setInsurance_id(userDetails.getInsurance_id());
-                                patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
-                                patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
-                                patient.setCreated_by(userDetails.getCreated_by());
-                                patient.setUpdated_by(userDetails.getUpdated_by());
-                                System.out.println(patient);
-                                patientRepo.save(patient);
-                            }
-                            if (userDetails.getRole().contentEquals("doctor")) {
-                                DoctorDao doctor = new DoctorDao();
-                                doctor.setDoctor_id(customer.getId());
-                                doctor.setSpeciality(userDetails.getSpeciality());
-                                doctorRepo.save(doctor);
+            if(userRepo.findByEmail(customer.getEmail())!=null){
+                return "User already exists";
+            }
+            else{
+                try {
+                    if(checkScope!=null && checkScope.getRole().contentEquals("admin") && !userDetails.getRole().contentEquals("admin")){
 
-                            }
+
+                        userRepo.save(customer);
+                        if (userDetails.getRole().contentEquals("patient")) {
+                            PatientDao patient = new PatientDao();
+                            patient.setPatient_id(customer.getId());
+                            patient.setBlood_type(userDetails.getBlood_type());
+                            patient.setHeight(userDetails.getHeight());
+                            patient.setWeight(userDetails.getWeight());
+                            patient.setInsurance_id(UUID.randomUUID().toString());
+                            //patient.setInsurance_id(userDetails.getInsurance_id());
+                            patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
+                            patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
+                            patient.setCreated_by(userDetails.getCreated_by());
+                            patient.setUpdated_by(userDetails.getUpdated_by());
+                            System.out.println(patient);
+                            patientRepo.save(patient);
+                        }
+                        if (userDetails.getRole().contentEquals("doctor")) {
+                            DoctorDao doctor = new DoctorDao();
+                            doctor.setDoctor_id(customer.getId());
+                            doctor.setSpeciality(userDetails.getSpeciality());
+                            doctorRepo.save(doctor);
 
                         }
-                        else if(checkScope!=null && checkScope.getRole().contentEquals("doctor")){
-                            if (userDetails.getRole().contentEquals("patient")) {
-                                userRepo.save(customer);
-                                PatientDao patient = new PatientDao();
-                                patient.setPatient_id(customer.getId());
-                                patient.setBlood_type(userDetails.getBlood_type());
-                                patient.setHeight(userDetails.getHeight());
-                                patient.setWeight(userDetails.getWeight());
-                                patient.setInsurance_id(UUID.randomUUID().toString());
-                                //patient.setInsurance_id(userDetails.getInsurance_id());
-                                patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
-                                patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
-                                patient.setCreated_by(userDetails.getCreated_by());
-                                patient.setUpdated_by(userDetails.getUpdated_by());
-                                System.out.println(patient);
-                                patientRepo.save(patient);
-                            }
 
-                        }
-                        else if(checkScope!=null && checkScope.getRole().contentEquals("hospital_staff")){
-                            if (userDetails.getRole().contentEquals("patient")) {
-                                userRepo.save(customer);
-                                PatientDao patient = new PatientDao();
-                                patient.setPatient_id(customer.getId());
-                                patient.setBlood_type(userDetails.getBlood_type());
-                                patient.setHeight(userDetails.getHeight());
-                                patient.setWeight(userDetails.getWeight());
-                                patient.setInsurance_id(UUID.randomUUID().toString());
-                                //patient.setInsurance_id(userDetails.getInsurance_id());
-                                patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
-                                patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
-                                patient.setCreated_by(userDetails.getCreated_by());
-                                patient.setUpdated_by(userDetails.getUpdated_by());
-                                System.out.println(patient);
-                                patientRepo.save(patient);
-                            }
-                        }
-                        else if(checkScope==null && userDetails.getRole().contentEquals("patient")){
+                    }
+                    else if(checkScope!=null && checkScope.getRole().contentEquals("doctor")){
+                        if (userDetails.getRole().contentEquals("patient")) {
                             userRepo.save(customer);
                             PatientDao patient = new PatientDao();
                             patient.setPatient_id(customer.getId());
@@ -339,30 +310,65 @@ public class CustomerUserDetailsService  {
                             System.out.println(patient);
                             patientRepo.save(patient);
                         }
-                        else {
-                            return "cannot create user";
-                        }
-                        return "success";
-                    } catch (Exception e) {
-                        return e.toString();
-                    }
 
+                    }
+                    else if(checkScope!=null && checkScope.getRole().contentEquals("hospital_staff")){
+                        if (userDetails.getRole().contentEquals("patient")) {
+                            userRepo.save(customer);
+                            PatientDao patient = new PatientDao();
+                            patient.setPatient_id(customer.getId());
+                            patient.setBlood_type(userDetails.getBlood_type());
+                            patient.setHeight(userDetails.getHeight());
+                            patient.setWeight(userDetails.getWeight());
+                            patient.setInsurance_id(UUID.randomUUID().toString());
+                            //patient.setInsurance_id(userDetails.getInsurance_id());
+                            patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
+                            patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
+                            patient.setCreated_by(userDetails.getCreated_by());
+                            patient.setUpdated_by(userDetails.getUpdated_by());
+                            System.out.println(patient);
+                            patientRepo.save(patient);
+                        }
+                    }
+                    else if(checkScope==null && userDetails.getRole().contentEquals("patient")){
+                        userRepo.save(customer);
+                        PatientDao patient = new PatientDao();
+                        patient.setPatient_id(customer.getId());
+                        patient.setBlood_type(userDetails.getBlood_type());
+                        patient.setHeight(userDetails.getHeight());
+                        patient.setWeight(userDetails.getWeight());
+                        patient.setInsurance_id(UUID.randomUUID().toString());
+                        //patient.setInsurance_id(userDetails.getInsurance_id());
+                        patient.setEmergency_contact_name(userDetails.getEmergency_contact_name());
+                        patient.setEmergency_contact_number(userDetails.getEmergency_contact_number());
+                        patient.setCreated_by(userDetails.getCreated_by());
+                        patient.setUpdated_by(userDetails.getUpdated_by());
+                        System.out.println(patient);
+                        patientRepo.save(patient);
+                    }
+                    else {
+                        return "cannot create user";
+                    }
+                    return "success";
+                } catch (Exception e) {
+                    return e.toString();
                 }
 
+            }
 
-            }
-            else{
-                return "Enter Valid Details";
-            }
+
         }
-
-
-
+        else{
+            return "Enter Valid Details";
+        }
+    }
 
 
     public String GenerateOtp(String email) throws MessagingException, UnsupportedEncodingException {
-        UserDao user=userRepo.findByEmail(email);
+        System.out.println(email);
+        UserDao user=userRepo.findByEmail(email.trim());
         String randomCode = RandomString.make(8);
+        System.out.println(user.getEmail());
         user.setOne_time_password(randomCode);
 
         userRepo.save(user);
@@ -394,6 +400,7 @@ public class CustomerUserDetailsService  {
             return "success";
         }
         catch(Exception e) {
+            System.out.println(e);
             return "something went wrong, please try again later.";
         }
 

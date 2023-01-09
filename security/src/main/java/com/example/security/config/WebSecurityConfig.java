@@ -25,8 +25,6 @@ import java.util.Collections;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Value("${allowed.origin}")
-    private String allowedOrigin;
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Autowired
@@ -40,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 //        httpSecurity.cors().allowedOrigins(allowedOrigin).allowedMethods("GET", "POST", "PUT", "DELETE").allowedHeaders("*");
         // We don't need CSRF for this example
-        httpSecurity.
+        httpSecurity.cors().and().
                 csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers("/user/login").permitAll().antMatchers("/user/verify").permitAll().antMatchers("/user/register").permitAll().
