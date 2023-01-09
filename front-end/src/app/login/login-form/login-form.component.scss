@@ -18,6 +18,8 @@
     border-radius: 8px;
 }
 .right-pane{
-    background-image: url("../../../assets/images/hospital.png");
+    background-image: url("../../../assets/images/hospital.webp");
     border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
