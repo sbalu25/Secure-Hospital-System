@@ -9,3 +9,6 @@ Users in the project are classified into two categories
 - Administrator: Responsible for creating, modifying, viewing, and deleting employee records, authorize or decline transaction requests, create, view, maintain and delete all internal files; access system log files; and ensure smooth functioning of the hospital system.
 ## External Users
 - Patients: Individuals can request an appointment with a particular doctor or a general appointment, view their records, view diagnosis, view medical prescriptions, request lab tests, view payments and transactions and request reports and statements.
+## Secure Hospital System Functionalities
+- Appointments and Visits: Project provides an interface for users to booking, authorization and viewing of appointments.
+<img width="467" alt="image" src="https://user-images.githubusercontent.com/60153091/211429769-0cc8422c-ab0d-4735-8bd7-5897373125af.png">
