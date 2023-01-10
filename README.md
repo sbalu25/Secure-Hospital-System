@@ -28,7 +28,7 @@ Users in the project are classified into two categories
 - Help & Support Center: Patient can raise a help request and they can can be viewed by hospital staff.
 <img width="473" alt="image" src="https://user-images.githubusercontent.com/60153091/211430816-80965abc-3a0f-4c3f-bc16-badf5287ff88.png">
 
-Chatbot: A chatbot is implemented to help patients with their general quiries and helps in redirecting to appropriate web pages.
+- Chatbot: A chatbot is implemented to help patients with their general quiries and helps in redirecting to appropriate web pages.
 <img width="466" alt="image" src="https://user-images.githubusercontent.com/60153091/211430981-536cd3c6-1128-49a8-aaba-e64ff031e379.png">
 
 - OTP Verification: A series of alphanumerical characters is automatically generated using Google SMTP server and is used to authenticate a user for the purpose of login or to view any transactions using a virtual keyboard.
