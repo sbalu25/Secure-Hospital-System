@@ -38,9 +38,9 @@ Users in the project are classified into two categories
 - Preventing Malicious Login: Inorder to prevent malicious login, a google recaptcha is integrated into the system.
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60153091/211431810-3895e7a3-bd95-4bc6-88ac-5dcbc987b201.png">
 
--Public Key Certificate: Secure Hospital System uses a self-signed public key certificate for the web application which acts as a digitally signed document that serves to validate the sender's authorization and name. The digital document is generated and issued by a Firebase.
+- Public Key Certificate: Secure Hospital System uses a self-signed public key certificate for the web application which acts as a digitally signed document that serves to validate the sender's authorization and name. The digital document is generated and issued by a Firebase.
 
--Data Masking : Sensitive fields in the database, such as those containing customer data, hospital data and other sensitive information, was accomplished through the use of techniques such as data masking and hashing algorithms used by the program.
+- Data Masking : Sensitive fields in the database, such as those containing customer data, hospital data and other sensitive information, was accomplished through the use of techniques such as data masking and hashing algorithms used by the program.
 
 # Technologies Used
 ## Front End
