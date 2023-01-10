@@ -13,10 +13,10 @@ Users in the project are classified into two categories
 - Appointments and Visits: Project provides an interface for users to booking, authorization and viewing of appointments.
 <img width="467" alt="image" src="https://user-images.githubusercontent.com/60153091/211429769-0cc8422c-ab0d-4735-8bd7-5897373125af.png">
 <img width="461" alt="image" src="https://user-images.githubusercontent.com/60153091/211429861-beca2412-38ac-4efb-9f15-99e3ac683afc.png">
-- Diagnosis: Project provides and interface for doctor to record and view of the diagnosis of the patient and schedule next appointment if required. 
+* Diagnosis: Project provides and interface for doctor to record and view of the diagnosis of the patient and schedule next appointment if required. 
 <img width="467" alt="image" src="https://user-images.githubusercontent.com/60153091/211430147-f1fd528d-7650-4bde-9442-7efd28205c83.png">
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211430173-ef45d010-93ef-4407-aa6b-914a998fa049.png">
-- Lab Tests: A doctor can recommend a lab test to a patient from their diagnosis and lab staff validates the lab test, performs, and release the results.
++ Lab Tests: A doctor can recommend a lab test to a patient from their diagnosis and lab staff validates the lab test, performs, and release the results.
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211430369-715097eb-ca58-4fdd-b303-373c416751d1.png">
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211430401-04958de0-c89f-4220-b4c6-b468310af064.png">
 - Insurance: A patient can claim the insurance and insurance staff authroizes the claim.
@@ -30,7 +30,8 @@ Chatbot: A chatbot is implemented to help patients with their general quiries an
 - Session Management: Application makes use of session management inorder to keep track of all of the data that is coming in and going out as a result of the function calls made by the user.
 - Preventing Malicious Login: Inorder to prevent malicious login, a google recaptcha is integrated into the system.
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60153091/211431810-3895e7a3-bd95-4bc6-88ac-5dcbc987b201.png">
-# Technologies
+
+# Technologies Used
 ## Front End
 - Angular 
 - HTML
