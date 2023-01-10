@@ -21,14 +21,19 @@ Users in the project are classified into two categories
 + Lab Tests: A doctor can recommend a lab test to a patient from their diagnosis and lab staff validates the lab test, performs, and release the results.
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211430369-715097eb-ca58-4fdd-b303-373c416751d1.png">
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211430401-04958de0-c89f-4220-b4c6-b468310af064.png">
+
 - Insurance: A patient can claim the insurance and insurance staff authroizes the claim.
 <img width="479" alt="image" src="https://user-images.githubusercontent.com/60153091/211430580-2ccdc17f-aaa0-4c51-9373-056537abac1d.png">
+
 - Help & Support Center: Patient can raise a help request and they can can be viewed by hospital staff.
 <img width="473" alt="image" src="https://user-images.githubusercontent.com/60153091/211430816-80965abc-3a0f-4c3f-bc16-badf5287ff88.png">
+
 Chatbot: A chatbot is implemented to help patients with their general quiries and helps in redirecting to appropriate web pages.
 <img width="466" alt="image" src="https://user-images.githubusercontent.com/60153091/211430981-536cd3c6-1128-49a8-aaba-e64ff031e379.png">
+
 - OTP Verification: A series of alphanumerical characters is automatically generated using Google SMTP server and is used to authenticate a user for the purpose of login or to view any transactions using a virtual keyboard.
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211431439-aef3f843-a37f-4b5c-818c-9124a371f23c.png">
+
 - Session Management: Application makes use of session management inorder to keep track of all of the data that is coming in and going out as a result of the function calls made by the user.
 - Preventing Malicious Login: Inorder to prevent malicious login, a google recaptcha is integrated into the system.
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60153091/211431810-3895e7a3-bd95-4bc6-88ac-5dcbc987b201.png">
