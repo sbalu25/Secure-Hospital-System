@@ -34,9 +34,13 @@ Users in the project are classified into two categories
 - OTP Verification: A series of alphanumerical characters is automatically generated using Google SMTP server and is used to authenticate a user for the purpose of login or to view any transactions using a virtual keyboard.
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/60153091/211431439-aef3f843-a37f-4b5c-818c-9124a371f23c.png">
 
-- Session Management: Application makes use of session management inorder to keep track of all of the data that is coming in and going out as a result of the function calls made by the user.
+- Session Management: Application makes use of session management inorder to keep track of all of the data that is coming in and going out as a result of the function calls made by the user. Once the user is logged in, a session token is issued. If the user is inactive for 15 mins, the session expires and the user is logged out automatically. The token is required for every user request.
 - Preventing Malicious Login: Inorder to prevent malicious login, a google recaptcha is integrated into the system.
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/60153091/211431810-3895e7a3-bd95-4bc6-88ac-5dcbc987b201.png">
+
+-Public Key Certificate: Secure Hospital System uses a self-signed public key certificate for the web application which acts as a digitally signed document that serves to validate the sender's authorization and name. The digital document is generated and issued by a Firebase.
+
+-Data Masking : Sensitive fields in the database, such as those containing customer data, hospital data and other sensitive information, was accomplished through the use of techniques such as data masking and hashing algorithms used by the program.
 
 # Technologies Used
 ## Front End
